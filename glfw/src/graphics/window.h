@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -21,7 +22,7 @@ namespace inspix {
 			void update();
 
 			bool isClosing() const {
-				return glfwWindowShouldClose(m_Window);
+				return glfwWindowShouldClose(m_Window) == 1;
 			}
 		};
 	}

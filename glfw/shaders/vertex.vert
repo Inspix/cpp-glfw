@@ -1,6 +1,6 @@
 #version 330 core
 
-layout (location = 0) in vertex;
+layout (location = 0) in vec4 vertex;
 
 uniform mat4 pr_matrix;
 uniform mat4 v_matrix;
