@@ -22,14 +22,18 @@
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
+    <ClCompile Include="src\input\input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\window.h" />
+    <ClInclude Include="src\input\input.h" />
     <ClInclude Include="src\utils\fileutils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\fragment.frag" />
+    <None Include="shaders\retro.frag" />
+    <None Include="shaders\retro.vert" />
     <None Include="shaders\vertex.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

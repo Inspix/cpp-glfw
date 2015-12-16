@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <input/input.h>
 
 namespace inspix {
 	namespace graphics {
@@ -13,14 +14,15 @@ namespace inspix {
 			GLFWwindow* m_Window;
 			unsigned int m_Width, m_Height;
 			char* m_Title;
-
+			input::Input* m_Input;
 		public:
 			Window(char* title, const unsigned int width, const unsigned int height);
 			virtual ~Window();
 
-			void clear() const;
-			void update();
+			input::Input* getInput() const { return m_Input; }
 
+			void clear() const;
+			void update();			
 			bool isClosing() const {
 				return glfwWindowShouldClose(m_Window) == 1;
 			}

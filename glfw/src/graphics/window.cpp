@@ -21,7 +21,8 @@ namespace inspix {
 			}
 
 			glfwMakeContextCurrent(m_Window);
-
+			m_Input = new input::Input(m_Window);
+			glfwSetWindowUserPointer(m_Window, m_Input);
 		}
 
 
