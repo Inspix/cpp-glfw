@@ -1,4 +1,4 @@
-#include "maths.h"
+#include "mat4.h"
 
 namespace inspix {
 	namespace math {
@@ -95,6 +95,37 @@ namespace inspix {
 			result.elements[5] = y;
 			result.elements[10] = z;
 			return result;
+		}
+
+		Mat4 Mat4::rotation(float angle, float x, float y, float z) {
+			Mat4 result;
+
+			float r = toRadians(angle);
+			float c = cos(r);
+			float s = sin(r);
+
+			result.elements[0] = x * x * (1 - c) + c;
+			result.elements[1] = x * y * (1 - c) + z * s;
+			result.elements[2] = x * z * (1 - c) - y * s;
+
+			result.elements[4] = x * y * (1 - c) - y * s;
+			result.elements[5] = y * y * (1 - c) + c;
+			result.elements[6] = y * z * (1 - c) + x * s;
+
+			result.elements[8] = x * z * (1 - c) + y * s;
+			result.elements[9] = y * z * (1 - c) - x * s;
+			result.elements[10] = z * z * (1 - c) + c;
+			result.elements[15] = 1.0f;
+
+			return result;
+		}
+
+		Mat4 Mat4::rotation(float angle, const Vec3& axis) {
+			return rotation(angle, axis.x, axis.y, axis.z);
+		}
+
+		Mat4 Mat4::rotation(const Vec4& values) {
+			return rotation(values.x, values.y, values.z, values.w);
 		}
 
 		Mat4 Mat4::scale(const Vec3& values) {			

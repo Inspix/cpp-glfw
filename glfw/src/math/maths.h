@@ -1,26 +1,8 @@
 #pragma once
 
+#include "vec2.h"
+#include "vec3.h"
+#include "vec4.h"
 #include "mat4.h"
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "mathhelpers.h"
 
-namespace inspix {
-	namespace math {
-		static void clamp(float& destination, const float& min, const float& max, const float& value) {
-			if (value >= max)
-			{
-				destination = max;
-			}
-			else if (value <= min) {
-				destination = min;
-			}
-			else {
-				destination = value;
-			}			
-		}
-
-		static float toRadians(float degrees) {
-			return degrees * M_PI / 180.0f;
-		}
-	}
-}
