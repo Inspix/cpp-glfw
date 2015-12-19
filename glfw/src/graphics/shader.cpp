@@ -68,6 +68,7 @@ namespace inspix {
 
 		ShaderProgram::~ShaderProgram()
 		{
+			glDeleteProgram(m_ID);
 		}
 
 		GLuint ShaderProgram::createShader(std::string source, GLenum type) {
@@ -93,6 +94,182 @@ namespace inspix {
 				return 0;
 			}
 			return id;
+		}
+
+		void ShaderProgram::setUniform1(const std::string& name, const bool& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform1i(location,value);
+		}
+		void ShaderProgram::setUniform1(const std::string& name, const int& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform1i(location, value);
+		}
+		void ShaderProgram::setUniform1(const std::string& name, const unsigned int& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform1ui(location, value);
+		}
+		void ShaderProgram::setUniform1(const std::string& name, const float& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform1f(location, value);
+		}
+		void ShaderProgram::setUniform1(const std::string& name, const double& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform1f(location, value);
+		}
+		void ShaderProgram::setUniform2(const std::string& name, const float& x, const float& y) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform2f(location, x,y);
+		}
+		void ShaderProgram::setUniform2(const std::string& name, const math::Vec2& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform2f(location, value.x, value.y);
+		}
+		void ShaderProgram::setUniform3(const std::string& name, const float& x, const float& y, const float& z) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform3f(location, x, y, z);
+		}
+		void ShaderProgram::setUniform3(const std::string& name, const float& x, const math::Vec2& yz) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform3f(location, x, yz.x, yz.y);
+		}
+		void ShaderProgram::setUniform3(const std::string& name, const math::Vec2& xy, const float& z) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform3f(location, xy.x, xy.y, z);
+		}
+		void ShaderProgram::setUniform3(const std::string& name, const math::Vec3& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform3f(location, value.x, value.y, value.z);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const float& x, const float& y, const float& z, const float& w) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, x, y, z, w);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const float& x, const math::Vec2& yz, const float& w) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, x, yz.x, yz.y, w);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const float& x, const float& y, const math::Vec2& zw) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, x, y, zw.x, zw.y);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const math::Vec2& xy, const float& z, const float& w) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, xy.x, xy.y, z, w);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const float& x, const math::Vec3& yzw) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, x, yzw.x, yzw.y, yzw.z);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const math::Vec3& xyz, const float& w) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, xyz.x, xyz.y, xyz.z, w);
+		}
+		void ShaderProgram::setUniform4(const std::string& name, const math::Vec4& xyzw) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniform4f(location, xyzw.x, xyzw.y, xyzw.z, xyzw.w);
+		}
+
+		void ShaderProgram::setUniformMat4(const std::string& name, const math::Mat4& value) {
+			GLint location = getUniformLocation(name);
+			if (location == -1)
+			{
+				return;
+			}
+			glUniformMatrix4fv(location,1,GL_FALSE, value.elements);
+		}
+
+		GLint ShaderProgram::getUniformLocation(std::string name) {
+			GLint value = uniformCache[name];
+			if (value != 0)
+			{
+				if (value == -1)
+				{
+					std::cout << "Uniform " << name << " not found in shader." << std::endl;
+				}
+				return uniformCache[name];
+			}
+
+			GLint result = glGetUniformLocation(m_ID, name.c_str());
+
+			if (result == -1)
+			{
+				std::cout << "Uniform " << name << " not found in shader." << std::endl;
+			}
+			uniformCache[name] = result;
+
+			return result;
 		}
 	}
 }

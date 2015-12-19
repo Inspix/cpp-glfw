@@ -88,6 +88,11 @@ int main(int argc,char** argv) {
 		
 	};
 
+	std::unordered_map<std::string, GLint> map;
+	map["test"] = 1;
+
+	std::cout << map["a"] << " " << map["test"] << std::endl;
+
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -104,10 +109,8 @@ int main(int argc,char** argv) {
 	float lol = 0.5f;
 	float increment = 1;
 	glUseProgram(shader.getId());
-	GLint matLocation = glGetUniformLocation(shader.getId(), "pr_matrix");
-	glUniformMatrix4fv(matLocation, 1, GL_FALSE, pr_matrix.elements);
-	GLint vwLocation = glGetUniformLocation(shader.getId(), "vw_matrix");
-	glUniformMatrix4fv(vwLocation, 1, GL_FALSE, rot_matrix.elements);
+	shader.setUniformMat4("pr_matrix", pr_matrix);
+	shader.setUniformMat4("vw_matrix", rot_matrix);
 	float rotate = 1.0f;
 	while (!window.isClosing()) {
 		window.clear();
