@@ -9,16 +9,17 @@ namespace inspix {
 	namespace math {
 		struct Mat4 {
 
-			float elements[16];
+			union {
+				float elements[16];
+				Vec4 columns[4];
+			};
 
 			Mat4();
-			Mat4(float diagonalValue);
-			
+			Mat4(float diagonalValue);			
 
 			Mat4& mul(const Mat4& other);
 			Mat4& operator*=(const Mat4& other);
 			friend Mat4 operator*(Mat4 left, const Mat4& right);
-
 			static Mat4 identity();
 			static Mat4 orthographic(float left, float right,float bottom, float top, float near, float far);
 			static Mat4 perspective(float fov, float ratio, float near, float far);

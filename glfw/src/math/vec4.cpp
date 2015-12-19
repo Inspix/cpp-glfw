@@ -3,14 +3,6 @@
 namespace inspix {
 	namespace math {
 
-		Vec4::Vec4()
-		{
-			x = 0.0f;
-			y = 0.0f;
-			z = 0.0f;
-			w = 0.0f;
-		}
-
 		Vec4::Vec4(const float& value) {
 			x = value;
 			y = value;

@@ -16,6 +16,8 @@ int main(int argc,char** argv) {
 
 	ShaderProgram shader("shaders/retro.vert", "shaders/retro.frag");
 
+	// Tests
+#if 0 
 	Vec2 empty;
 	Vec2 constructor(5.4f, 4.3f);
 	Vec2 addition = Vec2(0.5f, 1.5f) + Vec2(1.5f, 2.5f);
@@ -49,7 +51,8 @@ int main(int argc,char** argv) {
 	std::cout << v3multiplication << std::endl;
 	std::cout << v3division << std::endl;
 	std::cout << "Vec3[5, 4, 3] = Method chaining add 2/divide by 2/multiply by 3" << v3constructor.add(Vec3(2)).div(2).mul(3) << std::endl;
-
+	v3empty.r = 5;
+	std::cout << "!!!!!!!!! " << v3empty.x << std::endl;
 	Vec4 v4empty;
 	Vec4 v4constructor(5);
 	Vec4 v4addition = Vec4(1, 1, 1, 2.5f) + Vec4(3, 3, 3,1.3f);
@@ -64,8 +67,13 @@ int main(int argc,char** argv) {
 	std::cout << v4multiplication << std::endl;
 	std::cout << v4division << std::endl;
 	std::cout << "Vec4[5, 5, 5, 5] = Method chaining add 2/divide by 2/multiply by 3" << v4constructor.add(Vec4(2)).div(2).mul(3) << std::endl;
+#endif
 
 	Mat4 matrix = Mat4::identity();
+
+	std::cout << matrix.ToString() << std::endl;
+
+	matrix.columns[1].x = 5;
 	
 	std::cout << matrix.ToString() << std::endl;
 

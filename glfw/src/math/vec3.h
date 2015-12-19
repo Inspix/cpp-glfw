@@ -7,7 +7,10 @@ namespace inspix {
 
 		struct Vec3 {
 
-			float x, y, z;
+			union { float x; float r; };
+			union { float y; float g; };
+			union { float z; float b; };
+
 
 			Vec3();
 			Vec3(const float& value);
