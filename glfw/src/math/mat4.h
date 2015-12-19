@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vec2.h"
 #include "vec3.h"
 #include "vec4.h"
 #include "mathhelpers.h"
@@ -29,6 +30,8 @@ namespace inspix {
 			static Mat4 rotation(float angle, const Vec3& axises);
 			static Mat4 rotation(const Vec4& values);
 			static Mat4 scale(float x, float y, float z);
+			static Mat4 scale(const Vec2& xy, float z);
+			static Mat4 scale(float x, const Vec2& yz);
 			static Mat4 scale(const Vec3& value);
 
 			std::string ToString();

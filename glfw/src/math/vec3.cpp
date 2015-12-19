@@ -60,6 +60,12 @@ namespace inspix {
 			return *this;
 		}		
 
+		void Vec3::set(const float& x, const float& y, const float& z) {
+			this->x = x;
+			this->y = y;
+			this->z = z;
+		}
+
 		Vec3& Vec3::operator+=(const Vec3 & other)
 		{
 			return add(other);

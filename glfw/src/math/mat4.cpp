@@ -91,15 +91,7 @@ namespace inspix {
 
 		Mat4 Mat4::translation(const Vec3& vector) {
 			return translation(vector.x, vector.y, vector.z);
-		}
-
-		Mat4 Mat4::scale(float x, float y, float z) {
-			Mat4 result = identity();
-			result.elements[0] = x;
-			result.elements[5] = y;
-			result.elements[10] = z;
-			return result;
-		}
+		}		
 
 		Mat4 Mat4::rotation(float angle, float x, float y, float z) {
 			Mat4 result;
@@ -130,6 +122,21 @@ namespace inspix {
 
 		Mat4 Mat4::rotation(const Vec4& values) {
 			return rotation(values.x, values.y, values.z, values.w);
+		}
+
+		Mat4 Mat4::scale(float x, float y, float z) {
+			Mat4 result = identity();
+			result.elements[0] = x;
+			result.elements[5] = y;
+			result.elements[10] = z;
+			return result;
+		}
+
+		Mat4 Mat4::scale(float x, const Vec2& yz) {
+			return scale(x, yz.x, yz.y);
+		}
+		Mat4 Mat4::scale(const Vec2& xy, float z) {
+			return scale(xy.x, xy.y,z);
 		}
 
 		Mat4 Mat4::scale(const Vec3& values) {			

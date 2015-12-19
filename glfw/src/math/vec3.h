@@ -28,6 +28,7 @@ namespace inspix {
 			Vec3& mul(const float& other);
 			Vec3& div(const Vec3& other);
 			Vec3& div(const float& other);
+			void set(const float& x, const float& y, const float& z);
 
 			Vec3& operator+=(const Vec3& other);
 			Vec3& operator-=(const Vec3& other);

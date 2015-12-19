@@ -11,6 +11,7 @@ namespace inspix {
 				return;
 			}
 
+			glfwWindowHint(GLFW_SAMPLES, 4);
 			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
 
 			if (!m_Window)
