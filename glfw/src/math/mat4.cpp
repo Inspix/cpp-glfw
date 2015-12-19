@@ -59,7 +59,22 @@ namespace inspix {
 			result.elements[14] = (far + near) / (far - near);
 
 			return result;
-		}		
+		}
+
+		Mat4 Mat4::perspective(float fov, float ratio, float near, float far) {
+			Mat4 result;
+
+			float range = near - far;
+			float halfFovTan = tanf(toRadians(fov / 2.0f));
+
+
+			result.elements[0] = 1.0f / (halfFovTan * ratio);
+			result.elements[5] = 1.0f / halfFovTan;
+			result.elements[10] = (-near - far) / range;
+			result.elements[11] = 1.0f;
+			result.elements[14] = 2.0f * near * far / range;
+			return result;
+		}
 
 		Mat4 Mat4::translation(float x, float y, float z) {
 			Mat4 result = identity();

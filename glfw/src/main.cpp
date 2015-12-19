@@ -65,7 +65,7 @@ int main(char** args, int argc) {
 	std::cout << v4division << std::endl;
 	std::cout << "Vec4[5, 5, 5, 5] = Method chaining add 2/divide by 2/multiply by 3" << v4constructor.add(Vec4(2)).div(2).mul(3) << std::endl;
 
-	Mat4 matrix = Mat4::identity();
+	Mat4 matrix = Mat4::perspective(35.0f,16/9,1,100);
 	
 	std::cout << matrix.ToString() << std::endl;
 
