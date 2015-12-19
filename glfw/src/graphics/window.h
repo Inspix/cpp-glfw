@@ -20,7 +20,7 @@ namespace inspix {
 			virtual ~Window();
 
 			input::Input* getInput() const { return m_Input; }
-
+			void close() const { glfwSetWindowShouldClose(m_Window, 1); };
 			void clear() const;
 			void update();			
 			bool isClosing() const {

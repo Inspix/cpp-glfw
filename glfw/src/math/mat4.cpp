@@ -25,6 +25,8 @@ namespace inspix {
 
 		Mat4& Mat4::mul(const Mat4& other) {
 
+
+			float temp[16];
 			for (int y = 0; y < 4; y++)
 			{
 				for (int x = 0; x < 4; x++)
@@ -34,9 +36,11 @@ namespace inspix {
 					{
 						sum += elements[x + z * 4] * other.elements[z + y * 4];
 					}
-					elements[x + y * 4] = sum;
+					temp[x + y * 4] = sum;
 				}
 			}
+
+			memcpy(elements, temp, sizeof(temp));
 			return *this;
 		}
 

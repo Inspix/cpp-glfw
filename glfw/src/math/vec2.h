@@ -9,7 +9,9 @@ namespace inspix {
 
 			union {
 				float values[2];
-				float x, y;
+				struct {
+					float x, y;
+				};
 			};
 
 

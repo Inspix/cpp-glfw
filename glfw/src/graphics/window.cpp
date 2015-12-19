@@ -28,6 +28,7 @@ namespace inspix {
 
 		Window::~Window()
 		{
+			delete m_Input;
 			glfwTerminate();
 		}
 
@@ -40,6 +41,7 @@ namespace inspix {
 		{
 			glfwSwapBuffers(m_Window);
 			glfwPollEvents();
+			m_Input->update();
 		}
 	}
 
