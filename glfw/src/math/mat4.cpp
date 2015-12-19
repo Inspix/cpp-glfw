@@ -54,9 +54,9 @@ namespace inspix {
 			result.elements[0] = 2 / (right - left);
 			result.elements[5] = 2 / (top - bottom);
 			result.elements[10] = -2 / (far - near);
-			result.elements[12] = (right + left) / (right - left);
-			result.elements[13] = (top + bottom) / (top - bottom);
-			result.elements[14] = (far + near) / (far - near);
+			result.elements[12] = -(right + left) / (right - left);
+			result.elements[13] = -(top + bottom) / (top - bottom);
+			result.elements[14] = -(far + near) / (far - near);
 
 			return result;
 		}
@@ -104,17 +104,17 @@ namespace inspix {
 			float c = cos(r);
 			float s = sin(r);
 
-			result.elements[0] = x * x * (1 - c) + c;
-			result.elements[1] = x * y * (1 - c) + z * s;
-			result.elements[2] = x * z * (1 - c) - y * s;
+			result.elements[0] = x * (1 - c) + c;
+			result.elements[1] = x * y * (1.0f - c) + z * s;
+			result.elements[2] = x * z * (1.0f - c) - y * s;
 
-			result.elements[4] = x * y * (1 - c) - y * s;
-			result.elements[5] = y * y * (1 - c) + c;
-			result.elements[6] = y * z * (1 - c) + x * s;
+			result.elements[4] = x * y * (1.0f - c) - z * s;
+			result.elements[5] = y * (1.0f - c) + c;
+			result.elements[6] = y * z * (1.0f - c) + x * s;
 
-			result.elements[8] = x * z * (1 - c) + y * s;
-			result.elements[9] = y * z * (1 - c) - x * s;
-			result.elements[10] = z * z * (1 - c) + c;
+			result.elements[8] = x * z * (1.0f - c) + y * s;
+			result.elements[9] = y * z * (1.0f - c) - x * s;
+			result.elements[10] = z * (1.0f - c) + c;
 			result.elements[15] = 1.0f;
 
 			return result;

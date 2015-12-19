@@ -7,7 +7,11 @@ namespace inspix {
 
 		struct Vec2 {
 
-			float x, y;
+			union {
+				float values[2];
+				float x, y;
+			};
+
 
 			Vec2();
 			Vec2(const float& value);

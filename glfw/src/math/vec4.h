@@ -7,10 +7,20 @@ namespace inspix {
 
 		struct Vec4 {
 
-			union { float x; float r; };
+			/*union { float x; float r; };
 			union { float y; float g; };
 			union { float z; float b; };
-			union { float w; float a; };
+			union { float w; float a; };*/
+
+			union {
+				float values[4];
+				struct {
+					float x, y, z, w;
+				};
+				struct {
+					float r, g, b, a;
+				};
+			};
 
 
 			Vec4() = default;

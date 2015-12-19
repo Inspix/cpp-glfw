@@ -14,7 +14,7 @@ int main(int argc,char** argv) {
 	
 	glewInit();
 
-	ShaderProgram shader("shaders/retro.vert", "shaders/retro.frag");
+	ShaderProgram shader("shaders/vertex.vert", "shaders/fragment.frag");
 
 	// Tests
 #if 0 
@@ -69,20 +69,45 @@ int main(int argc,char** argv) {
 	std::cout << "Vec4[5, 5, 5, 5] = Method chaining add 2/divide by 2/multiply by 3" << v4constructor.add(Vec4(2)).div(2).mul(3) << std::endl;
 #endif
 
-	Mat4 matrix = Mat4::identity();
+	Vec4 test(0);
 
-	std::cout << matrix.ToString() << std::endl;
+	test.r = 5;
 
-	matrix.columns[1].x = 5;
+	std::cout << &test.r << std::endl;
+	std::cout << &test.x << std::endl;
+	std::cout << "array : " << &test.values[0] << std::endl;
+
+	GLfloat verticies[] = {
+		-8.0f , -4.5f, 0.0f,
+		8.0f, -4.5f, 0.0f,
+		8.0f, 4.5f, 0.0f,
+		8.0f, 4.5f, 0.0f,
+		-8.0f , 4.5f, 0.0f,
+		-8.0f , -4.5f, 0.0f
+		
+		
+	};
+
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
+
+	Mat4 pr_matrix = Mat4::orthographic(-16, 16, -9, 9, -10, 10);
+	Mat4 rot_matrix = Mat4::rotation(25.0f, 0.0f, 0.0f, 1.0f);
 	
-	std::cout << matrix.ToString() << std::endl;
-
 	glClearColor(0.0f, 0.0f, 0.8f, 1);
 
 	input::Input* input = window.getInput();
 	float lol = 0.5f;
 	float increment = 1;
 	glUseProgram(shader.getId());
+	GLint matLocation = glGetUniformLocation(shader.getId(), "pr_matrix");
+	glUniformMatrix4fv(matLocation, 1, GL_FALSE, pr_matrix.elements);
+	GLint vwLocation = glGetUniformLocation(shader.getId(), "vw_matrix");
+	glUniformMatrix4fv(vwLocation, 1, GL_FALSE, rot_matrix.elements);
 	float rotate = 1.0f;
 	while (!window.isClosing()) {
 		window.clear();
@@ -92,11 +117,7 @@ int main(int argc,char** argv) {
 		//clamp(lol, 0, 1000, increment);
 		//increment++;
 
-		glBegin(GL_TRIANGLES);
-		glVertex2f(-0.5, -0.5);
-		glVertex2f(-0.0, 0.5);
-		glVertex2f(0.5, 0.5);
-		glEnd();
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		window.update();
 	}

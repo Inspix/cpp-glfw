@@ -3,9 +3,8 @@
 layout (location = 0) in vec4 vertex;
 
 uniform mat4 pr_matrix;
-uniform mat4 v_matrix;
-uniform mat4 m_matrix;
+uniform mat4 vw_matrix = mat4(1.0);
 
 void main(){
-	gl_Position = pr_matrix * v_matrix * m_matrix * vertex;
+	gl_Position = pr_matrix * vw_matrix * vertex;
 }
