@@ -25,14 +25,12 @@
     <ClCompile Include="src\graphics\buffers\indexBuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\drawables\drawable2d.cpp" />
+    <ClCompile Include="src\graphics\renderers\batchrenderer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\input\input.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
-    <ClCompile Include="src\math\vec2.cpp" />
-    <ClCompile Include="src\math\vec3.cpp" />
-    <ClCompile Include="src\math\vec4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -41,12 +39,15 @@
     <ClInclude Include="src\graphics\buffers\indexBuffer.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\drawables\drawable2d.h" />
+    <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
+    <ClInclude Include="src\graphics\renderers\renderer.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\input\input.h" />
     <ClInclude Include="src\math\mat4.h" />
     <ClInclude Include="src\math\mathhelpers.h" />
     <ClInclude Include="src\math\maths.h" />
+    <ClInclude Include="src\math\types.h" />
     <ClInclude Include="src\math\vec2.h" />
     <ClInclude Include="src\math\vec3.h" />
     <ClInclude Include="src\math\vec4.h" />

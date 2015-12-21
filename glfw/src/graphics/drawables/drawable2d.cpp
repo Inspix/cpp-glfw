@@ -5,8 +5,8 @@ namespace inspix {
 
 		GLuint Drawable2D::indicies[6] = { 0, 1, 2, 2, 3, 0};
 
-		Drawable2D::Drawable2D(const math::Vec3& position, const math::Vec2& size, const math::Vec4 color, ShaderProgram& shader) :
-			Position(position),Size(size),m_Color(color), m_Shader(shader)
+		Drawable2D::Drawable2D(const math::Vec3f& position, const math::Vec2f& size, const math::Vec4f color) :
+			Position(position),Size(size),m_Color(color)
 		{
 			m_Vao = new VertexArray();
 			GLfloat vertecies[] = {

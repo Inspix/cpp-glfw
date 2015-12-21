@@ -13,8 +13,8 @@ class Game : public inspix::Application {
 private:
 	ShaderProgram* m_Shader;
 	input::Input* m_Input;
-	math::Mat4 m_ProjectionMatrix;
-	math::Vec2 m_light;
+	Mat4 m_ProjectionMatrix;
+	Vec2f m_light;
 	float m_Intensity = 1;
 
 public:

@@ -89,7 +89,7 @@ namespace inspix {
 
 		}
 
-		Mat4 Mat4::translation(const Vec3& vector) {
+		Mat4 Mat4::translation(const Vec3f& vector) {
 			return translation(vector.x, vector.y, vector.z);
 		}		
 
@@ -116,11 +116,11 @@ namespace inspix {
 			return result;
 		}
 
-		Mat4 Mat4::rotation(float angle, const Vec3& axis) {
+		Mat4 Mat4::rotation(float angle, const Vec3f& axis) {
 			return rotation(angle, axis.x, axis.y, axis.z);
 		}
 
-		Mat4 Mat4::rotation(const Vec4& values) {
+		Mat4 Mat4::rotation(const Vec4f& values) {
 			return rotation(values.x, values.y, values.z, values.w);
 		}
 
@@ -132,14 +132,14 @@ namespace inspix {
 			return result;
 		}
 
-		Mat4 Mat4::scale(float x, const Vec2& yz) {
+		Mat4 Mat4::scale(float x, const Vec2f& yz) {
 			return scale(x, yz.x, yz.y);
 		}
-		Mat4 Mat4::scale(const Vec2& xy, float z) {
+		Mat4 Mat4::scale(const Vec2f& xy, float z) {
 			return scale(xy.x, xy.y,z);
 		}
 
-		Mat4 Mat4::scale(const Vec3& values) {			
+		Mat4 Mat4::scale(const Vec3f& values) {			
 			return scale(values.x,values.y,values.z);
 		}
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GLFW/glfw3.h>
-#include "math/vec2.h"
+#include "math/maths.h"
 #define ALLOWED_KEYS 512
 #define ALLOWED_MBUTTONS 32
 
@@ -16,7 +16,7 @@ namespace inspix {
 			bool mouseButtonsPrev[ALLOWED_MBUTTONS];
 			bool mouseButtonsOnce[ALLOWED_MBUTTONS];
 
-			math::Vec2 m_mousepos;
+			math::Vec2f m_mousepos;
 			double mouseX, mouseY;
 		public:
 			Input(GLFWwindow* window);
@@ -26,7 +26,7 @@ namespace inspix {
 			bool isMouseButtonDown(int button) const;
 			bool isMouseButtonPressed(int button) const; 
 			void update();
-			const math::Vec2& getMousePos() const { return m_mousepos; }
+			const math::Vec2f& getMousePos() const { return m_mousepos; }
 			double getMouseX() const;
 			double getMouseY() const;
 		private:

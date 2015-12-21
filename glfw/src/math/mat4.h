@@ -1,8 +1,6 @@
 #pragma once
 
-#include "vec2.h"
-#include "vec3.h"
-#include "vec4.h"
+#include "types.h"
 #include "mathhelpers.h"
 #include <iomanip>
 
@@ -12,7 +10,7 @@ namespace inspix {
 
 			union {
 				float elements[16];
-				Vec4 columns[4];
+				Vec4f columns[4];
 			};
 
 			Mat4();
@@ -25,14 +23,14 @@ namespace inspix {
 			static Mat4 orthographic(float left, float right,float bottom, float top, float near, float far);
 			static Mat4 perspective(float fov, float ratio, float near, float far);
 			static Mat4 translation(float x, float y, float z);
-			static Mat4 translation(const Vec3& vector);
+			static Mat4 translation(const Vec3f& vector);
 			static Mat4 rotation(float angle, float x, float y, float z);
-			static Mat4 rotation(float angle, const Vec3& axises);
-			static Mat4 rotation(const Vec4& values);
+			static Mat4 rotation(float angle, const Vec3f& axises);
+			static Mat4 rotation(const Vec4f& values);
 			static Mat4 scale(float x, float y, float z);
-			static Mat4 scale(const Vec2& xy, float z);
-			static Mat4 scale(float x, const Vec2& yz);
-			static Mat4 scale(const Vec3& value);
+			static Mat4 scale(const Vec2f& xy, float z);
+			static Mat4 scale(float x, const Vec2f& yz);
+			static Mat4 scale(const Vec3f& value);
 
 			std::string ToString();
 		};
