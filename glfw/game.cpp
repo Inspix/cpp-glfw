@@ -1,4 +1,5 @@
 #include "game.h"
+#include "utils/timer.h"
 
 Game::Game()
 	: Application(960,540,"OpenGL Testing Ground")
@@ -7,6 +8,7 @@ Game::Game()
 }
 Game::~Game() {
 	delete m_Shader;
+	delete renderer;
 }
 
 void Game::init() {
@@ -15,6 +17,7 @@ void Game::init() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1);
 	m_Input = window->getInput();
 	m_Shader = new ShaderProgram("shaders/vertex.vert", "shaders/fragment.frag");
+	renderer = new SimpleRenderer2D(*m_Shader);
 	glUseProgram(m_Shader->getId());
 	m_ProjectionMatrix = math::Mat4::orthographic(0, 16, 0, 9, -10, 10);
 	m_Shader->setUniformMat4("pr_matrix", m_ProjectionMatrix);
@@ -45,9 +48,26 @@ void Game::updateInput() {
 
 void Game::run(){
 
-	Drawable2D sprite(Vec3f(0, 0, 0), Vec2f(16.0f, 9.0f), Color(0xffffffff));
-	Drawable2D sprite2(Vec3f(2, 0, 0), Vec2f(2.0f, 2.0f), Color(Vec4f(0.1f, 0.1f, 1, 1)));
+	srand(time(NULL));
 
+	std::vector<const Drawable2D*> drawables;
+
+	
+
+
+	for (float y = -9.0; y < 9.0; y+= 0.75f)
+	{
+		for (float x = -16.0; x < 16.0; x+= 0.75f)
+		{
+			const Drawable2D* current = new Drawable2D(Vec3f(x, y, 0), Vec2f(0.74f, 0.74f), Color(rand() % 256, rand() % 256, rand() % 256, 255));
+			drawables.push_back(current);
+		}
+	}
+
+	TimerS timer;
+	timer.run();
+	int frames = 0;
+	
 	while (!window->isClosing()) {
 		update();
 		window->clear();
@@ -56,20 +76,25 @@ void Game::run(){
 		m_Shader->setUniform2("light", m_light);
 		m_Shader->setUniform1("intensity", m_Intensity);
 
-		sprite.getVao()->bind();
-		sprite.getIbo()->bind();
-		m_Shader->setUniformMat4("ml_matrix", sprite.getTransform());
-		glDrawElements(GL_TRIANGLES, sprite.getIbo()->getCount(), GL_UNSIGNED_INT, 0);
+		for (size_t i = 0; i < drawables.size(); i++)
+		{
+			renderer->submit(drawables[i]);
+		}
 
-		sprite.getIbo()->unbind();
-		sprite.getVao()->unbind();
+		renderer->render();
+		frames++;
 
-		sprite2.getVao()->bind();
-		sprite2.getIbo()->bind();
-		m_Shader->setUniformMat4("ml_matrix", sprite2.getTransform());
-		glDrawElements(GL_TRIANGLES, sprite2.getIbo()->getCount(), GL_UNSIGNED_INT, 0);
+		if (timer.getElapsed() >= 1)
+		{
+			std::cout << "FPS: " << std::dec << frames << std::endl;
+			timer.reset();
+			frames = 0;
+			
+		}
+	}
 
-		sprite2.getIbo()->unbind();
-		sprite2.getVao()->unbind();
+	for (size_t i = 0; i < drawables.size(); i++)
+	{
+		delete drawables[i];
 	}
 }
