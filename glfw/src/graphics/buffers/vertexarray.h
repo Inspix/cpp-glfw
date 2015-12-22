@@ -12,7 +12,7 @@ namespace inspix {
 			VertexArray();
 			virtual ~VertexArray();
 
-			void addBuffer(const Buffer& buffer, GLuint location);
+			void addBuffer(const Buffer& buffer, GLuint location, GLboolean normalized = GL_FALSE);
 			
 			void bind() const;
 			void unbind() const;

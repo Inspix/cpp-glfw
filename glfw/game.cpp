@@ -45,8 +45,8 @@ void Game::updateInput() {
 
 void Game::run(){
 
-	Drawable2D sprite(Vec3f(0, 0, 0), Vec2f(16.0f, 9.0f), Vec4f(1, 1, 1, 1));
-	Drawable2D sprite2(Vec3f(2, 0, 0), Vec2f(2.0f, 2.0f), Vec4f(0.1f, 0.1f, 1, 1));
+	Drawable2D sprite(Vec3f(0, 0, 0), Vec2f(16.0f, 9.0f), Color(0xffffffff));
+	Drawable2D sprite2(Vec3f(2, 0, 0), Vec2f(2.0f, 2.0f), Color(Vec4f(0.1f, 0.1f, 1, 1)));
 
 	while (!window->isClosing()) {
 		update();

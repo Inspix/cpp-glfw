@@ -5,7 +5,7 @@ namespace inspix {
 
 		GLuint Drawable2D::indicies[6] = { 0, 1, 2, 2, 3, 0};
 
-		Drawable2D::Drawable2D(const math::Vec3f& position, const math::Vec2f& size, const math::Vec4f color) :
+		Drawable2D::Drawable2D(const math::Vec3f& position, const math::Vec2f& size, const Color& color) :
 			Position(position),Size(size),m_Color(color)
 		{
 			m_Vao = new VertexArray();
@@ -16,18 +16,18 @@ namespace inspix {
 				1, 0, 0
 			};
 
-			GLfloat colors[] = {
-				color.r, color.g, color.b, color.a,
-				color.r, color.g, color.b, color.a,
-				color.r, color.g, color.b, color.a,
-				color.r, color.g, color.b, color.a
+			GLuint colors[] = {
+				color.abgr,
+				color.abgr,
+				color.abgr,
+				color.abgr
 			};
 
 			Buffer vbo(vertecies, 4 * 3, 3);
-			Buffer cbo(colors, 4 * 4, 4);
+			Buffer cbo(colors, 4, 4);
 
 			m_Vao->addBuffer(vbo, 0);
-			m_Vao->addBuffer(cbo, 1);
+			m_Vao->addBuffer(cbo, 1,GL_TRUE);
 
 			m_Ibo = new IndexBuffer(Drawable2D::indicies, 6);
 			recalculateTransform();

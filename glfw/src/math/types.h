@@ -6,6 +6,8 @@
 
 namespace inspix {
 	namespace math {
+		typedef unsigned char ubyte;
+
 		typedef Vec2<char> Vec2c;
 		typedef Vec2<unsigned char> uVec2c;
 		typedef Vec2<short> Vec2s;

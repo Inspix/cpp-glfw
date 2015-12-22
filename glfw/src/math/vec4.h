@@ -47,7 +47,18 @@ namespace inspix {
 
 			std::string ToString() const;
 
-			friend std::ostream& operator<<(std::ostream& stream, const Vec4<T>& vec);
+			friend std::ostream& operator<<(std::ostream& stream, const Vec4& vec) {
+				const char* name = typeid(vec).name();
+				if (strstr(name, "char"))
+				{
+					stream << name << std::endl << "[" << (int)vec.x << ", " << (int)vec.y << ", " << (int)vec.z << ", " << (int)vec.w << "]";
+				}
+				else
+				{
+					stream << name <<  std::endl << "[" << vec.x << ", " << vec.y << ", " << vec.z << ", " << vec.w << "]";
+				}
+				return stream;
+			}
 
 
 		};
@@ -68,7 +79,7 @@ namespace inspix {
 			this->z = z;
 			this->w = w;
 		}
-
+		
 		template<typename T>
 		Vec4<T>& Vec4<T>::add(const Vec4<T>& other) {
 			x += other.x;
@@ -183,19 +194,13 @@ namespace inspix {
 		bool operator!=(const Vec4<T>& left, const Vec4<T>& other) {
 			return !(left == other);
 		}
-
+		
 		template<typename T>
 		std::string Vec4<T>::ToString() const
 		{
 			std::ostringstream ss;
 			ss << *this;
 			return ss.str();
-		}
-
-		template<typename T>
-		std::ostream& operator<<(std::ostream& stream, const Vec4<T>& vec) {
-			stream << "Vec4<T>[" << vec.x << ", " << vec.y << ", " << vec.z << ", " << vec.w << "]";
-			return stream;
-		}
+		}		
 	}
 }

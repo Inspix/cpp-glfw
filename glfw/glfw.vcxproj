@@ -24,6 +24,7 @@
     <ClCompile Include="src\graphics\buffers\buffer.cpp" />
     <ClCompile Include="src\graphics\buffers\indexBuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\color.cpp" />
     <ClCompile Include="src\graphics\drawables\drawable2d.cpp" />
     <ClCompile Include="src\graphics\renderers\batchrenderer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\input\input.h" />
+    <ClInclude Include="src\graphics\color.h" />
     <ClInclude Include="src\math\mat4.h" />
     <ClInclude Include="src\math\mathhelpers.h" />
     <ClInclude Include="src\math\maths.h" />

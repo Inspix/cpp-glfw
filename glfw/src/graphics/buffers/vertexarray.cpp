@@ -9,11 +9,11 @@ namespace inspix {
 
 		VertexArray::~VertexArray(){}
 
-		void VertexArray::addBuffer(const Buffer& buffer, GLuint location) {
+		void VertexArray::addBuffer(const Buffer& buffer, GLuint location, GLboolean normalized) {
 			bind();
 			buffer.bind();
 			glEnableVertexAttribArray(location);
-			glVertexAttribPointer(location, buffer.getComponentCount(), GL_FLOAT, GL_FALSE, 0, 0);
+			glVertexAttribPointer(location, buffer.getComponentCount(), buffer.getDataType(), normalized, 0, 0);
 			buffer.unbind();
 			unbind();			
 		}
