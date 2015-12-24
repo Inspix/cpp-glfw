@@ -37,13 +37,30 @@ namespace inspix {
 			Vec4<T>& operator*=(const T& scalar);
 			Vec4<T>& operator/=(const T& scalar);
 
-			friend Vec4<T> operator+(Vec4<T> left, const Vec4<T>& right);
-			friend Vec4<T> operator-(Vec4<T> left, const Vec4<T>& right);
-			friend Vec4<T> operator*(Vec4<T> left, const Vec4<T>& right);
-			friend Vec4<T> operator/(Vec4<T> left, const Vec4<T>& right);
+			
+			friend Vec4 operator+(Vec4 left, const Vec4& right) {
+				return left.add(right);
+			}
 
-			friend bool operator==(const Vec4<T>& left, const Vec4<T>& other);
-			friend bool operator!=(const Vec4<T>& left, const Vec4<T>& other);
+			friend Vec4 operator-(Vec4 left, const Vec4& right) {
+				return left.sub(right);
+			}
+
+			friend Vec4 operator*(Vec4 left, const Vec4& right) {
+				return left.mul(right);
+			}
+
+			friend Vec4 operator/(Vec4 left, const Vec4& right) {
+				return left.div(right);
+			}
+
+			friend bool operator==(const Vec4& left, const Vec4& other) {
+				return left.x == other.x && left.y == other.y;
+			}
+
+			friend bool operator!=(const Vec4& left, const Vec4& other) {
+				return !(left == other);
+			}
 
 			std::string ToString() const;
 
@@ -165,35 +182,7 @@ namespace inspix {
 			return div(scalar);
 		}
 
-		template<typename T>
-		Vec4<T> operator+(Vec4<T> left, const Vec4<T>& right) {
-			return left.add(right);
-		}
-
-		template<typename T>
-		Vec4<T> operator-(Vec4<T> left, const Vec4<T>& right) {
-			return left.sub(right);
-		}
-
-		template<typename T>
-		Vec4<T> operator*(Vec4<T> left, const Vec4<T>& right) {
-			return left.mul(right);
-		}
-
-		template<typename T>
-		Vec4<T> operator/(Vec4<T> left, const Vec4<T>& right) {
-			return left.div(right);
-		}
-
-		template<typename T>
-		bool operator==(const Vec4<T>& left, const Vec4<T>& other) {
-			return left.x == other.x && left.y == other.y;
-		}
-
-		template<typename T>
-		bool operator!=(const Vec4<T>& left, const Vec4<T>& other) {
-			return !(left == other);
-		}
+		
 		
 		template<typename T>
 		std::string Vec4<T>::ToString() const

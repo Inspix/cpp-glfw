@@ -38,13 +38,28 @@ namespace inspix {
 			Vec3<T>& operator*=(const T& scalar);
 			Vec3<T>& operator/=(const T& scalar);
 
-			friend Vec3<T> operator+(Vec3<T> left, const Vec3<T>& right);
-			friend Vec3<T> operator-(Vec3<T> left, const Vec3<T>& right);
-			friend Vec3<T> operator*(Vec3<T> left, const Vec3<T>& right);
-			friend Vec3<T> operator/(Vec3<T> left, const Vec3<T>& right);
+			friend Vec3 operator+(Vec3 left, const Vec3& right) {
+				return left.add(right);
+			}
 
-			friend bool operator==(const Vec3<T>& left, const Vec3<T>& other);
-			friend bool operator!=(const Vec3<T>& left, const Vec3<T>& other);
+			friend Vec3 operator-(Vec3 left, const Vec3& right) {
+				return left.sub(right);
+			}
+			friend Vec3 operator*(Vec3 left, const Vec3& right) {
+				return left.mul(right);
+			}
+
+			friend Vec3 operator/(Vec3 left, const Vec3& right) {
+				return left.div(right);
+			}
+
+			friend bool operator==(const Vec3& left, const Vec3& other) {
+				return left.x == other.x && left.y == other.y;
+			}
+
+			friend bool operator!=(const Vec3& left, const Vec3& other) {
+				return !(left == other);
+			}
 
 			std::string ToString() const;
 
@@ -173,35 +188,7 @@ namespace inspix {
 			return div(scalar);
 		}
 
-		template<typename T>
-		Vec3<T> operator+(Vec3<T> left, const Vec3<T>& right) {
-			return left.add(right);
-		}
-
-		template<typename T>
-		Vec3<T> operator-(Vec3<T> left, const Vec3<T>& right) {
-			return left.sub(right);
-		}
-
-		template<typename T>
-		Vec3<T> operator*(Vec3<T> left, const Vec3<T>& right) {
-			return left.mul(right);
-		}
-
-		template<typename T>
-		Vec3<T> operator/(Vec3<T> left, const Vec3<T>& right) {
-			return left.div(right);
-		}
-
-		template<typename T>
-		bool operator==(const Vec3<T>& left, const Vec3<T>& other) {
-			return left.x == other.x && left.y == other.y;
-		}
-
-		template<typename T>
-		bool operator!=(const Vec3<T>& left, const Vec3<T>& other) {
-			return !(left == other);
-		}
+		
 
 		template<typename T>
 		std::string Vec3<T>::ToString() const

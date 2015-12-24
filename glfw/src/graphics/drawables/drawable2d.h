@@ -1,17 +1,17 @@
 #pragma once
 
-#include "graphics/shader.h"
-#include "graphics/buffers/vertexarray.h"
-#include "graphics/buffers/buffer.h"
-#include "graphics/buffers/indexBuffer.h"
-#include "graphics/color.h"
+#include "../shader.h"
+#include "../buffers/vertexarray.h"
+#include "../buffers/buffer.h"
+#include "../buffers/indexBuffer.h"
+#include "../color.h"
 
 namespace inspix {
 	namespace graphics {
 		
 		struct VertexData {
 			math::Vec3f vertex;
-			int color;
+			Color color;
 		};
 
 		class Drawable2D {

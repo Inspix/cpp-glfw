@@ -34,13 +34,30 @@ namespace inspix {
 			Vec2<T>& operator*=(const T& scalar);
 			Vec2<T>& operator/=(const T& scalar);
 
-			friend Vec2<T> operator+(Vec2<T> left, const Vec2<T>& right);
-			friend Vec2<T> operator-(Vec2<T> left, const Vec2<T>& right);
-			friend Vec2<T> operator*(Vec2<T> left, const Vec2<T>& right);
-			friend Vec2<T> operator/(Vec2<T> left, const Vec2<T>& right);
+			friend Vec2 operator+(Vec2 left, const Vec2& right) {
+				return left.add(right);
+			}
+						
+			friend Vec2 operator-(Vec2 left, const Vec2& right) {
+				return left.sub(right);
+			}
 
-			friend bool operator==(const Vec2<T>& left, const Vec2<T>& other);
-			friend bool operator!=(const Vec2<T>& left, const Vec2<T>& other);
+			friend Vec2 operator*(Vec2 left, const Vec2& right) {
+				return left.mul(right);
+			}
+			
+			friend Vec2 operator/(Vec2 left, const Vec2& right) {
+				return left.div(right);
+			}
+
+			friend bool operator==(const Vec2<T>& left, const Vec2<T>& other) {
+				return left.x == other.x && left.y == other.y;
+			}
+
+			friend bool operator!=(const Vec2<T>& left, const Vec2<T>& other) {
+				return !(left == other);
+			}
+
 
 			std::string ToString() const;
 
@@ -152,37 +169,7 @@ namespace inspix {
 		Vec2<T>& Vec2<T>::operator/=(const T& scalar) {
 			return div(scalar);
 		}
-
-		template <typename T>
-		Vec2<T> operator+(Vec2<T> left, const Vec2<T>& right) {
-			return left.add(right);
-		}
-
-		template <typename T>
-		Vec2<T> operator-(Vec2<T> left, const Vec2<T>& right) {
-			return left.sub(right);
-		}
-
-		template <typename T>
-		Vec2<T> operator*(Vec2<T> left, const Vec2<T>& right) {
-			return left.mul(right);
-		}
-
-		template <typename T>
-		Vec2<T> operator/(Vec2<T> left, const Vec2<T>& right) {
-			return left.div(right);
-		}
-
-		template <typename T>
-		bool operator==(const Vec2<T>& left, const Vec2<T>& other) {
-			return left.x == other.x && left.y == other.y;
-		}
-
-		template <typename T>
-		bool operator!=(const Vec2<T>& left, const Vec2<T>& other) {
-			return !(left == other);
-		}
-
+		
 		template <typename T>
 		std::string Vec2<T>::ToString() const
 		{
