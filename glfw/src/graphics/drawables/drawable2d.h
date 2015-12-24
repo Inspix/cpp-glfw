@@ -8,12 +8,7 @@
 
 namespace inspix {
 	namespace graphics {
-		
-		struct VertexData {
-			math::Vec3f vertex;
-			Color color;
-		};
-
+			
 		class Drawable2D {
 		protected:
 			static GLuint indicies[6];
@@ -31,7 +26,9 @@ namespace inspix {
 			virtual ~Drawable2D();
 
 			void recalculateTransform();
-			inline const VertexArray* getVao() const { return m_Vao; }
+			inline VertexArray* getVao() const { return m_Vao; }
+			inline const math::Vec3f getPosition() const { return Position; }
+			inline const math::Vec2f getSize() const { return Size; }
 			inline const IndexBuffer* getIbo() const { return m_Ibo; }
 			inline const Color& getColor() const { return m_Color; }
 			inline const math::Mat4& getTransform() const { return m_Transform; }

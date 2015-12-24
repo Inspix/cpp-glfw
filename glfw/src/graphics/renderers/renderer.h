@@ -5,6 +5,11 @@
 namespace inspix {
 	namespace graphics {
 
+		struct VertexData {
+			math::Vec3f vertex;
+			Color color;
+		};
+
 		class Renderer2D {
 		protected:
 			

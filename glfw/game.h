@@ -3,7 +3,8 @@
 #include <application.h>
 #include "graphics/shader.h"
 #include "graphics/drawables/drawable2d.h"
-#include "graphics/renderers/simplerenderer2D.h"
+#include "graphics/renderers/batchrenderer.h"
+#include "graphics/renderers/simplerenderer2d.h"
 
 using namespace inspix;
 using namespace graphics;
@@ -18,6 +19,8 @@ private:
 	Vec2f m_light;
 	float m_Intensity = 1;
 	SimpleRenderer2D* renderer;
+	BatchRenderer* renderer2;
+	
 public:
 	Game();
 	~Game();

@@ -15,22 +15,35 @@ namespace inspix {
 			}
 		}
 
-		void VertexArray::addBuffer(const Buffer* buffer, GLuint location, GLboolean normalized) {
+		void VertexArray::addBuffer(const Buffer* buffer, GLuint location, GLboolean normalized, GLsizei stride, const void* pointer) {
 			buffers.push_back(buffer);
 			bind();
 			buffer->bind();
-			glEnableVertexAttribArray(location);
-			glVertexAttribPointer(location, buffer->getComponentCount(), buffer->getDataType(), normalized, 0, 0);
+			addPointer(location, buffer->getComponentCount(), buffer->getDataType(), normalized, stride, pointer);
 			buffer->unbind();
 			unbind();			
 		}
 
-		void VertexArray::bind() const {
-			glBindVertexArray(m_ID);
+		void VertexArray::addPointer(GLuint location,GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer) {
+			bind();
+			glEnableVertexAttribArray(location);
+			glVertexAttribPointer(location, size, type, normalized, stride, pointer);
+			unbind();
+			pointers++;
 		}
 
-		void VertexArray::unbind() const {
+		void VertexArray::bind(){
+			if (bound) return;
+		
+			glBindVertexArray(m_ID);
+			bound = true;
+		}
+
+		void VertexArray::unbind() {
+			if (!bound) return;
+		
 			glBindVertexArray(0);
+			bound = false;
 		}
 	}
 }
