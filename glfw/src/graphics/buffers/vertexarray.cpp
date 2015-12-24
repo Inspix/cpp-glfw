@@ -7,14 +7,21 @@ namespace inspix {
 			glGenVertexArrays(1, &m_ID);
 		}
 
-		VertexArray::~VertexArray(){}
+		VertexArray::~VertexArray(){
+			glDeleteVertexArrays(1, &m_ID);
+			for (size_t i = 0; i < buffers.size(); i++)
+			{
+				delete buffers[i];
+			}
+		}
 
-		void VertexArray::addBuffer(const Buffer& buffer, GLuint location, GLboolean normalized) {
+		void VertexArray::addBuffer(const Buffer* buffer, GLuint location, GLboolean normalized) {
+			buffers.push_back(buffer);
 			bind();
-			buffer.bind();
+			buffer->bind();
 			glEnableVertexAttribArray(location);
-			glVertexAttribPointer(location, buffer.getComponentCount(), buffer.getDataType(), normalized, 0, 0);
-			buffer.unbind();
+			glVertexAttribPointer(location, buffer->getComponentCount(), buffer->getDataType(), normalized, 0, 0);
+			buffer->unbind();
 			unbind();			
 		}
 

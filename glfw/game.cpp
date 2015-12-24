@@ -53,8 +53,6 @@ void Game::run(){
 	std::vector<const Drawable2D*> drawables;
 
 	
-
-
 	for (float y = -9.0; y < 9.0; y+= 0.75f)
 	{
 		for (float x = -16.0; x < 16.0; x+= 0.75f)

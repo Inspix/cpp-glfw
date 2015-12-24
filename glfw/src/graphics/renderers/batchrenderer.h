@@ -9,7 +9,7 @@ namespace inspix {
 		private:
 			GLuint m_VertexData;
 			IndexBuffer m_IBO;
-
+			std::vector<const Drawable2D*> drawables;
 		public:
 			BatchRenderer();
 			~BatchRenderer();

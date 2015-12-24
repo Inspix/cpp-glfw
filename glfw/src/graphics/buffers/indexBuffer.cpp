@@ -11,7 +11,7 @@ namespace inspix {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 		IndexBuffer::~IndexBuffer() {
-
+			glDeleteBuffers(1, &m_ID);
 		}
 			
 		void IndexBuffer::bind() const {

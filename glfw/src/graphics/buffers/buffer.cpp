@@ -1,4 +1,5 @@
 #include "buffer.h"
+#include <iostream>
 
 namespace inspix {
 	namespace graphics {
@@ -25,6 +26,7 @@ namespace inspix {
 
 		Buffer::~Buffer()
 		{
+			glDeleteBuffers(1, &m_ID);
 		}
 
 		void Buffer::bind() const {

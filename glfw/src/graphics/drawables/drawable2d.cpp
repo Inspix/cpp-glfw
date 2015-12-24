@@ -23,8 +23,8 @@ namespace inspix {
 				color.abgr
 			};
 
-			Buffer vbo(vertecies, 4 * 3, 3);
-			Buffer cbo(colors, 4, 4);
+			Buffer* vbo = new Buffer(vertecies, 4 * 3, 3);
+			Buffer* cbo = new Buffer(colors, 4, 4);
 
 			m_Vao->addBuffer(vbo, 0);
 			m_Vao->addBuffer(cbo, 1,GL_TRUE);
