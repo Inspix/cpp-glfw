@@ -37,26 +37,31 @@ namespace inspix {
 
 		void BatchRenderer::submit(const Drawable2D* drawable) {
 
-			const math::Vec3f& pos = drawable->getPosition();
-			const math::Vec2f& size = drawable->getSize();
+			//const math::Vec3f& pos = drawable->Position;
+			//const math::Vec2f& size = drawable->Size;
+			const math::Vec3f* vertecies = drawable->getVertecies();
 			const Color& color = drawable->getColor();
 
-			m_BufferPointer->vertex = pos;
+			//m_BufferPointer->vertex = pos;
+			m_BufferPointer->vertex = vertecies[0];
 			m_BufferPointer->color = color;
 
 			m_BufferPointer++;
 
-			m_BufferPointer->vertex = math::Vec3f(pos.x,pos.y + size.y,0);
+			//m_BufferPointer->vertex = math::Vec3f(pos.x,pos.y + size.y,0);
+			m_BufferPointer->vertex = vertecies[1];
 			m_BufferPointer->color = color;
 
 			m_BufferPointer++;
 
-			m_BufferPointer->vertex = math::Vec3f(pos.x + size.x, pos.y + size.y, 0);
+			//m_BufferPointer->vertex = math::Vec3f(pos.x + size.x, pos.y + size.y, 0);
+			m_BufferPointer->vertex = vertecies[2];
 			m_BufferPointer->color = color;
 
 			m_BufferPointer++;
 
-			m_BufferPointer->vertex = math::Vec3f(pos.x + size.x, pos.y, 0);
+			//m_BufferPointer->vertex = math::Vec3f(pos.x + size.x, pos.y, 0);
+			m_BufferPointer->vertex = vertecies[3];
 			m_BufferPointer->color = color;
 			m_BufferPointer++;
 

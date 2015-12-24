@@ -14,7 +14,7 @@ namespace inspix {
 			static GLuint indicies[6];
 			Color m_Color;
 			math::Mat4 m_Transform;
-						
+			math::Vec3f vertecies[4];
 			VertexArray* m_Vao;
 			IndexBuffer* m_Ibo;
 		public:
@@ -27,8 +27,7 @@ namespace inspix {
 
 			void recalculateTransform();
 			inline VertexArray* getVao() const { return m_Vao; }
-			inline const math::Vec3f getPosition() const { return Position; }
-			inline const math::Vec2f getSize() const { return Size; }
+			inline const math::Vec3f* getVertecies() const { return vertecies; }
 			inline const IndexBuffer* getIbo() const { return m_Ibo; }
 			inline const Color& getColor() const { return m_Color; }
 			inline const math::Mat4& getTransform() const { return m_Transform; }

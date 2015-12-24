@@ -44,6 +44,19 @@ namespace inspix {
 			return *this;
 		}
 
+
+		Vec3f Mat4::mul(const Vec3f& other) {
+			return Vec3f(
+				columns[0].x * other.x + columns[1].x * other.y + columns[2].x * other.z + columns[3].x,
+				columns[0].y * other.x + columns[1].y * other.y + columns[2].y * other.z + columns[3].y,
+				columns[0].z * other.x + columns[1].z * other.y + columns[2].z * other.z + columns[3].z
+				);
+		}
+
+		Vec3f operator*(Mat4 left, const Vec3f& right) {
+			return left.mul(right);
+		}
+
 		Mat4& Mat4::operator*=(const Mat4& other) {
 			return mul(other);
 		}

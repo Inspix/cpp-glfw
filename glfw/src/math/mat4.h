@@ -17,8 +17,10 @@ namespace inspix {
 			Mat4(float diagonalValue);			
 
 			Mat4& mul(const Mat4& other);
+			Vec3f mul(const Vec3f& other);
 			Mat4& operator*=(const Mat4& other);
 			friend Mat4 operator*(Mat4 left, const Mat4& right);
+			friend Vec3f operator*(Mat4 left, const Vec3f& right);
 			static Mat4 identity();
 			static Mat4 orthographic(float left, float right,float bottom, float top, float near, float far);
 			static Mat4 perspective(float fov, float ratio, float near, float far);

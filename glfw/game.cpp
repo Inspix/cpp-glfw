@@ -63,6 +63,9 @@ void Game::run(){
 		}
 	}
 
+	Drawable2D* positionTest = new Drawable2D(Vec3f(0, 0, 0), Vec2f(4, 4), Color(0x2020ffffu));
+	std::cout << sizeof(Drawable2D) * drawables.size() << std::endl;
+	drawables.push_back(positionTest);
 	TimerS timer;
 	timer.run();
 	int frames = 0;
@@ -74,15 +77,17 @@ void Game::run(){
 		glUseProgram(m_Shader->getId());
 		m_Shader->setUniform2("light", m_light);
 		m_Shader->setUniform1("intensity", m_Intensity);
-		
-		//renderer2->begin();
+		positionTest->Rotation = (float)(glfwGetTime());
+		positionTest->Size = (cos(glfwGetTime()) * 3) * Vec2f(1);
+		positionTest->recalculateTransform();
+		renderer2->begin();
 
 		for (size_t i = 0; i < drawables.size(); i++)
 		{
-			renderer->submit(drawables[i]);
+			renderer2->submit(drawables[i]);
 		}		
-		//renderer2->end();
-		renderer->render();
+		renderer2->end();
+		//renderer->render();
 		frames++;
 
 		if (timer.getElapsed() >= 1)
