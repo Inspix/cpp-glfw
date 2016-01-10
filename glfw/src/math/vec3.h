@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <sstream>
+#include "mathhelpers.h"
+
 namespace inspix {
 	namespace math {
 
@@ -29,6 +31,11 @@ namespace inspix {
 			Vec3<T>& mul(const T& other);
 			Vec3<T>& div(const Vec3<T>& other);
 			Vec3<T>& div(const T& other);
+			T magnitude();
+			T dot(const Vec3<T>& other);
+			Vec3<T>& normalize();
+			Vec3<T> cross(const Vec3<T>& other);
+
 			void set(const T& x, const T& y, const T& z);
 
 			Vec3<T>& operator+=(const Vec3<T>& other);
@@ -149,7 +156,49 @@ namespace inspix {
 			z /= scalar;
 			return *this;
 		}
-		
+
+		template<typename T>
+		T Vec3<T>::magnitude() {
+			return sqrt(sqr(x) + sqr(y) + sqr(z));
+		}
+
+		template<typename T>
+		T Vec3<T>::dot(const Vec3<T>& other) {
+			return x * other.x + y * other.y + z * other.z;
+		}
+
+		template<typename T>
+		T dot(const Vec3<T>& lhs, const Vec3<T>& rhs) {
+			return lhs.dot(rhs)
+		}
+
+		template<typename T>
+		Vec3<T> Vec3<T>::cross(const Vec3<T>& other) {
+			return Vec3<T>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
+		}
+
+		template<typename T>
+		Vec3<T> cross(const Vec3<T>& lhs, const Vec3<T>& rhs) {
+			return lhs.cross(rhs);
+		}
+
+		template<typename T>
+		Vec3<T>& Vec3<T>::normalize() {
+			T length = magnitude();
+
+			x /= length;
+			y /= length;
+			z /= length;			
+			
+			return *this;
+		}
+
+		template<typename T>
+		Vec3<T> normalized(const Vec3<T>& vec) {
+			T length = vec.magnitude();
+			return Vec3<T>(vec.x / length, vec.y / length, vec.z / length);
+		}
+
 		template<typename T>
 		void Vec3<T>::set(const T& x, const T& y, const T& z) {
 			this->x = x;

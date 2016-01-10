@@ -7,7 +7,7 @@ namespace inspix {
 
 		template<typename T>
 		struct Vec4 {			
-
+			
 			union {
 				T values[4];
 				struct {
@@ -17,7 +17,6 @@ namespace inspix {
 					T r, g, b, a;
 				};
 			};
-
 
 			Vec4<T>() = default;
 			Vec4<T>(const T& value);
@@ -29,6 +28,9 @@ namespace inspix {
 			Vec4<T>& mul(const T& other);
 			Vec4<T>& div(const Vec4<T>& other);
 			Vec4<T>& div(const T& other);
+			T magnitude();
+			T dot(const Vec4<T>& other);
+			Vec4<T>& normalize();
 
 			Vec4<T>& operator+=(const Vec4<T>& other);
 			Vec4<T>& operator-=(const Vec4<T>& other);
@@ -80,6 +82,8 @@ namespace inspix {
 
 		};
 
+		/*---------------- Constructors --------------*/
+
 		template<typename T>
 		Vec4<T>::Vec4(const T& value) {
 			x = value;
@@ -97,6 +101,8 @@ namespace inspix {
 			this->w = w;
 		}
 		
+		/*---------------- METHODS ----------------*/
+
 		template<typename T>
 		Vec4<T>& Vec4<T>::add(const Vec4<T>& other) {
 			x += other.x;
@@ -150,6 +156,42 @@ namespace inspix {
 			w /= scalar;
 			return *this;
 		}
+
+		template<typename T>
+		T Vec4<T>::dot(const Vec4<T>& other) {
+			return x * other.x + y * other.y + z * other.z + w * other.w;
+		}
+
+		template<typename T>
+		T dot(const Vec4<T>& lhs, const Vec4<T>& rhs) {
+			return lhs.dot(rhs);
+		}
+
+		template<typename T>
+		T Vec4<T>::magnitude() {
+			return sqrt(sqr(x) + sqr(y) + sqr(z) + sqr(w));
+		}
+
+		template<typename T>
+		Vec4<T>& Vec4<T>::normalize() {
+			T length = magnitude();
+			x /= length;
+			y /= length;
+			z /= length;
+			w /= length;
+
+			return *this;
+		}
+		
+		template<typename T>
+		Vec4<T> normalized(const Vec4<T>& vec) {
+			T length = vec.magnitude();
+
+			return vec / length;
+		}
+
+
+		/*------------------ OPERATORS -----------------*/
 
 		template<typename T>
 		Vec4<T>& Vec4<T>::operator+=(const Vec4<T> & other)

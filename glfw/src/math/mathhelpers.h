@@ -33,4 +33,7 @@ namespace {
 	float toRadians(float degrees) {
 		return degrees * (float)(M_PI / 180.0);
 	}
+	
+	template<typename T>
+	inline T sqr(T v) { return v*v; }
 }

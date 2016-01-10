@@ -26,6 +26,9 @@ namespace inspix {
 			Vec2<T>& mul(const T& other);
 			Vec2<T>& div(const Vec2& other);
 			Vec2<T>& div(const T& other);
+			T magnitude();
+			T dot(const Vec2<T>& other);
+			Vec2<T>& normalize();
 
 			Vec2<T>& operator+=(const Vec2<T>& other);
 			Vec2<T>& operator-=(const Vec2<T>& other);
@@ -138,6 +141,37 @@ namespace inspix {
 			y /= scalar;
 			return *this;
 		}
+
+		template <typename T>
+		T Vec2<T>::magnitude() {
+			return sqrt(sqr(x) + sqr(y));
+		}
+		
+		template <typename T>
+		T Vec2<T>::dot(const Vec2<T>& other) {
+			return x * other.x + y * other.y;
+		}
+
+		template <typename T>
+		T dot(const Vec2<T>& lhs, const Vec2<T> rhs) {
+			return lhs.dot(rhs);
+		}
+
+		template <typename T>
+		Vec2<T>& Vec2<T>::normalize() {
+			T length = magnitude();
+			x /= length;
+			y /= length;
+
+			return *this;
+		}
+
+		template <typename T>
+		Vec2<T> normalized(const Vec2<T>& vec) {
+			T length = vec.magnitude();
+			return vec / length;
+		}
+
 
 		template <typename T>
 		Vec2<T>& Vec2<T>::operator+=(const Vec2<T> & other)
