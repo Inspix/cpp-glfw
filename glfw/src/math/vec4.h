@@ -22,6 +22,15 @@ namespace inspix {
 			Vec4<T>(const T& value);
 			Vec4<T>(const T& x, const T& y,const T& z, const T& w);
 
+			inline Vec2<T> xy() const { return Vec2<T>(x, y); }
+			inline Vec2<T> yz() const { return Vec2<T>(y, z); }
+			inline Vec2<T> xz() const { return Vec2<T>(x, z); }
+
+			inline Vec3<T> xyz() const { return Vec3<T>(x, y, z); }
+			inline Vec3<T> yzw() const { return Vec3<T>(y, z , w); }
+			
+
+
 			Vec4<T>& add(const Vec4<T>& other);
 			Vec4<T>& sub(const Vec4<T>& other);
 			Vec4<T>& mul(const Vec4<T>& other);
@@ -32,6 +41,7 @@ namespace inspix {
 			T dot(const Vec4<T>& other);
 			Vec4<T>& normalize();
 
+			Vec4<T> operator-() const;
 			Vec4<T>& operator+=(const Vec4<T>& other);
 			Vec4<T>& operator-=(const Vec4<T>& other);
 			Vec4<T>& operator*=(const Vec4<T>& other);
@@ -192,6 +202,11 @@ namespace inspix {
 
 
 		/*------------------ OPERATORS -----------------*/
+
+		template<typename T>
+		Vec4<T> Vec4<T>::operator-() const {
+			return Vec4<T>(-x, -y, -z, -w);
+		}
 
 		template<typename T>
 		Vec4<T>& Vec4<T>::operator+=(const Vec4<T> & other)

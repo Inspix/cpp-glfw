@@ -33,6 +33,7 @@
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\input\input.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
+    <ClCompile Include="src\math\quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\renderers\simplerenderer2D.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="src\math\mat4.h" />
     <ClInclude Include="src\math\mathhelpers.h" />
     <ClInclude Include="src\math\maths.h" />
+    <ClInclude Include="src\math\quaternion.h" />
     <ClInclude Include="src\math\types.h" />
     <ClInclude Include="src\math\vec2.h" />
     <ClInclude Include="src\math\vec3.h" />
@@ -59,10 +61,17 @@
     <ClInclude Include="src\utils\timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dependencies\lib\glfw3.dll" />
     <None Include="shaders\fragment.frag" />
     <None Include="shaders\retro.frag" />
     <None Include="shaders\retro.vert" />
     <None Include="shaders\vertex.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\lib\glew32.lib" />
+    <Library Include="dependencies\lib\glew32s.lib" />
+    <Library Include="dependencies\lib\glfw3.lib" />
+    <Library Include="dependencies\lib\glfw3dll.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8F5EE512-64B4-4437-B696-08AD358253EA}</ProjectGuid>
@@ -115,7 +124,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Inspix\Documents\Visual Studio 2015\Projects\glfw\glfw\dependencies\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\Intermediates\</IntDir>
@@ -137,7 +146,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)glfw/dependencies/libs;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Alex\Desktop\Dev\cpp-glfw\glfw\dependencies\lib</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>

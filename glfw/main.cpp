@@ -1,6 +1,6 @@
 #include "game.h"
 #include "graphics/color.h"
-
+#include "math/quaternion.h"
 
 int main(int argc,char** argv) {	
 #if 0
@@ -65,6 +65,23 @@ int main(int argc,char** argv) {
 	std::cout << "BGRAToABGR:" << std::hex << abgr << std::endl << std::endl;
 #endif
 
+
+#if 1
+	Quaternion q;
+	Quaternion q1(Vec3f(2, 0, 0), 0.f);
+	Quaternion q2(Vec3f(1, 1, -1), 0.f);
+
+	std::cout << "Defauld Constructor: " << q << std::endl;
+	std::cout << "Q1: " << q1 << std::endl;
+	std::cout << "Q2: " << q2 << std::endl;
+	std::cout << "Q1 dot: " << q1.dot(q1) << std::endl;
+	std::cout << "Q1 * Q2: " << q1 * q2 << std::endl;
+	std::cout << "Q2 * Q1: " << q2 * q1 << std::endl;
+	std::cout << "Q1: " << q1 << std::endl;
+	std::cout << "Q2: " << q2 << std::endl;
+	std::cout << "Q2 * Q1 * conjugate(Q2):" << q2 * q1 * q2.conjugate() << std::endl;
+
+#endif
 	Game().run();
 	_CrtDumpMemoryLeaks();
 	return 0;

@@ -31,13 +31,15 @@ namespace inspix {
 			Vec3<T>& mul(const T& other);
 			Vec3<T>& div(const Vec3<T>& other);
 			Vec3<T>& div(const T& other);
-			T magnitude();
-			T dot(const Vec3<T>& other);
+			T magnitude() const;
+			T dot(const Vec3<T>& other) const;
 			Vec3<T>& normalize();
 			Vec3<T> cross(const Vec3<T>& other);
 
 			void set(const T& x, const T& y, const T& z);
 
+
+			Vec3<T> operator-() const;
 			Vec3<T>& operator+=(const Vec3<T>& other);
 			Vec3<T>& operator-=(const Vec3<T>& other);
 			Vec3<T>& operator*=(const Vec3<T>& other);
@@ -158,12 +160,12 @@ namespace inspix {
 		}
 
 		template<typename T>
-		T Vec3<T>::magnitude() {
+		T Vec3<T>::magnitude() const {
 			return sqrt(sqr(x) + sqr(y) + sqr(z));
 		}
 
 		template<typename T>
-		T Vec3<T>::dot(const Vec3<T>& other) {
+		T Vec3<T>::dot(const Vec3<T>& other) const {
 			return x * other.x + y * other.y + z * other.z;
 		}
 
@@ -178,7 +180,7 @@ namespace inspix {
 		}
 
 		template<typename T>
-		Vec3<T> cross(const Vec3<T>& lhs, const Vec3<T>& rhs) {
+		Vec3<T> cross(Vec3<T> lhs, const Vec3<T>& rhs) {
 			return lhs.cross(rhs);
 		}
 
@@ -204,6 +206,12 @@ namespace inspix {
 			this->x = x;
 			this->y = y;
 			this->z = z;
+		}
+
+
+		template<typename T>
+		Vec3<T> Vec3<T>::operator-() const {
+			return Vec3<T>(-x, -y, -z);
 		}
 
 		template<typename T>

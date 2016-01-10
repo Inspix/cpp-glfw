@@ -57,6 +57,9 @@
     <ClCompile Include="src\graphics\renderers\simplerenderer2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\math\quaternion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\window.h">
@@ -125,11 +128,21 @@
     <ClInclude Include="src\utils\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\vertex.vert" />
     <None Include="shaders\fragment.frag" />
     <None Include="shaders\retro.vert" />
     <None Include="shaders\retro.frag" />
+    <None Include="dependencies\lib\glfw3.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\lib\glew32.lib" />
+    <Library Include="dependencies\lib\glew32s.lib" />
+    <Library Include="dependencies\lib\glfw3.lib" />
+    <Library Include="dependencies\lib\glfw3dll.lib" />
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@ namespace inspix {
 			T dot(const Vec2<T>& other);
 			Vec2<T>& normalize();
 
+			Vec2<T> operator-() const;
 			Vec2<T>& operator+=(const Vec2<T>& other);
 			Vec2<T>& operator-=(const Vec2<T>& other);
 			Vec2<T>& operator*=(const Vec2<T>& other);
@@ -170,6 +171,11 @@ namespace inspix {
 		Vec2<T> normalized(const Vec2<T>& vec) {
 			T length = vec.magnitude();
 			return vec / length;
+		}
+
+		template<typename T>
+		Vec2<T> Vec2<T>::operator-() const {
+			return Vec2<T>(-x, -y);
 		}
 
 
