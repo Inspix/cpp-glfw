@@ -39,7 +39,7 @@ namespace inspix {
 		}
 		
 		void Drawable2D::recalculateTransform() {
-			m_Transform = math::Mat4::translation(Position) * math::Mat4::scale(Size, 1.0f) * math::Mat4::rotation(Rotation, 0, 0, 1);
+			m_Transform = math::Mat4::translation(Position) * Rotation.toMatrix4() * math::Mat4::scale(Size, 1.0f);
 
 			vertecies[0] = m_Transform * math::Vec3f(0);
 			vertecies[1] = m_Transform * math::Vec3f(0, 1, 0);

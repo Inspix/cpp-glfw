@@ -65,6 +65,13 @@ void Game::run(){
 
 	Drawable2D* positionTest = new Drawable2D(Vec3f(0, 0, 0), Vec2f(4, 4), Color(0x2020ffffu));
 	std::cout << sizeof(Drawable2D) * drawables.size() << std::endl;
+	Quaternion q = Quaternion::rotation((float)(glfwGetTime() * 10), Vec3f(0.5f, 0.5f, 0.5f).normalize());
+	q.xyz += Vec3f(1.f, 1.f, 1.f);;
+	positionTest->Rotation = q;
+	//positionTest->Size = (float)(cos(glfwGetTime()) * 3) * Vec2f(1);
+	std::cout << positionTest->getTransform() << std::endl;
+	positionTest->recalculateTransform();
+	std::cout << positionTest->getTransform() << std::endl;
 	drawables.push_back(positionTest);
 	TimerS timer;
 	timer.run();
@@ -77,8 +84,9 @@ void Game::run(){
 		glUseProgram(m_Shader->getId());
 		m_Shader->setUniform2("light", m_light);
 		m_Shader->setUniform1("intensity", m_Intensity);
-		positionTest->Rotation = (float)(glfwGetTime());
-		positionTest->Size = (cos(glfwGetTime()) * 3) * Vec2f(1);
+		Quaternion q = Quaternion::rotation((float)(glfwGetTime() * 10), Vec3f(0.5f, 0.5f, 0.5f).normalize());
+		positionTest->Rotation = q;
+		//positionTest->Size = (float)(cos(glfwGetTime()) * 3) * Vec2f(1);
 		positionTest->recalculateTransform();
 		renderer2->begin();
 

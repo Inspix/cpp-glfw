@@ -66,21 +66,29 @@ int main(int argc,char** argv) {
 #endif
 
 
-#if 1
-	Quaternion q;
-	Quaternion q1(Vec3f(2, 0, 0), 0.f);
-	Quaternion q2(Vec3f(1, 1, -1), 0.f);
+#if 0
+	/* Wolfram alpha Quaternion examples with swapped scalar to first index */
+	Quaternion q1 = { 2,3,4,1 };
+	Quaternion q2 = { 3,4,5,2 };
 
-	std::cout << "Defauld Constructor: " << q << std::endl;
-	std::cout << "Q1: " << q1 << std::endl;
-	std::cout << "Q2: " << q2 << std::endl;
-	std::cout << "Q1 dot: " << q1.dot(q1) << std::endl;
-	std::cout << "Q1 * Q2: " << q1 * q2 << std::endl;
-	std::cout << "Q2 * Q1: " << q2 * q1 << std::endl;
-	std::cout << "Q1: " << q1 << std::endl;
-	std::cout << "Q2: " << q2 << std::endl;
-	std::cout << "Q2 * Q1 * conjugate(Q2):" << q2 * q1 * q2.conjugate() << std::endl;
+	std::cout << q1 << " + " << q2 << std::endl;
+	std::cout << "Expected : Quaternion[5, 7, 9, 3] : " << q1 + q2 << std::endl;
 
+	q1 = { 0,-6, 3, 2 };
+	q2 = { 3,-2, 2, 1 };
+
+	std::cout << q1 << " * " << q2 << std::endl;
+	std::cout << "Expected : Quaternion[0, -1 , 25 ,-16] : " << q2 * q1 << std::endl;
+#endif
+
+#if 1 
+
+	Quaternion q = { 1,0,1,0 };
+	Mat4 rotation = q.toMatrix4();
+	std::cout << rotation << std::endl;
+
+	std::cout << rotation.get(3, 3) << std::endl;
+	std::cout << rotation.m33 << std::endl;
 #endif
 	Game().run();
 	_CrtDumpMemoryLeaks();

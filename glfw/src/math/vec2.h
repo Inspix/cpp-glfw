@@ -38,6 +38,9 @@ namespace inspix {
 			Vec2<T>& operator*=(const T& scalar);
 			Vec2<T>& operator/=(const T& scalar);
 
+			static Vec2<T> normalized(const Vec2<T>& vec);
+			static T dot(const Vec2<T>& lhs, const Vec2<T> rhs);
+
 			friend Vec2 operator+(Vec2 left, const Vec2& right) {
 				return left.add(right);
 			}
@@ -154,7 +157,7 @@ namespace inspix {
 		}
 
 		template <typename T>
-		T dot(const Vec2<T>& lhs, const Vec2<T> rhs) {
+		T Vec2<T>::dot(const Vec2<T>& lhs, const Vec2<T> rhs) {
 			return lhs.dot(rhs);
 		}
 
@@ -168,7 +171,7 @@ namespace inspix {
 		}
 
 		template <typename T>
-		Vec2<T> normalized(const Vec2<T>& vec) {
+		Vec2<T> Vec2<T>::normalized(const Vec2<T>& vec) {
 			T length = vec.magnitude();
 			return vec / length;
 		}

@@ -41,6 +41,9 @@ namespace inspix {
 			T dot(const Vec4<T>& other);
 			Vec4<T>& normalize();
 
+			static Vec4<T> normalized(const Vec4<T>& vec);
+			static T dot(const Vec4<T>& lhs, const Vec4<T>& rhs);
+
 			Vec4<T> operator-() const;
 			Vec4<T>& operator+=(const Vec4<T>& other);
 			Vec4<T>& operator-=(const Vec4<T>& other);
@@ -173,7 +176,7 @@ namespace inspix {
 		}
 
 		template<typename T>
-		T dot(const Vec4<T>& lhs, const Vec4<T>& rhs) {
+		T Vec4<T>::dot(const Vec4<T>& lhs, const Vec4<T>& rhs) {
 			return lhs.dot(rhs);
 		}
 
@@ -192,15 +195,13 @@ namespace inspix {
 
 			return *this;
 		}
-		
+
 		template<typename T>
-		Vec4<T> normalized(const Vec4<T>& vec) {
+		Vec4<T> Vec4<T>::normalized(const Vec4<T>& vec) {
 			T length = vec.magnitude();
 
 			return vec / length;
 		}
-
-
 		/*------------------ OPERATORS -----------------*/
 
 		template<typename T>

@@ -5,6 +5,7 @@
 #include "../buffers/buffer.h"
 #include "../buffers/indexBuffer.h"
 #include "../color.h"
+#include "math/quaternion.h"
 
 namespace inspix {
 	namespace graphics {
@@ -20,7 +21,7 @@ namespace inspix {
 		public:
 			math::Vec3f Position;
 			math::Vec2f Size;
-			float Rotation;
+			math::Quaternion Rotation;
 
 			Drawable2D(const math::Vec3f& position, const math::Vec2f& size, const Color& color);
 			virtual ~Drawable2D();

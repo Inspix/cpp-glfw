@@ -18,23 +18,23 @@ namespace inspix {
 			ShaderProgram(const char* vertpath, const char* fragpath);
 			virtual ~ShaderProgram();
 
-			void setUniform1(const std::string& name, const bool& value);
-			void setUniform1(const std::string& name, const int& value);
-			void setUniform1(const std::string& name, const unsigned int& value);
-			void setUniform1(const std::string& name, const float& value);
-			void setUniform1(const std::string& name, const double& value);
-			void setUniform2(const std::string& name, const float& x, const float& y);
+			void setUniform1(const std::string& name, bool value);
+			void setUniform1(const std::string& name, int value);
+			void setUniform1(const std::string& name, unsigned int value);
+			void setUniform1(const std::string& name, float value);
+			void setUniform1(const std::string& name, double value);
+			void setUniform2(const std::string& name, float x, float y);
 			void setUniform2(const std::string& name, const math::Vec2f& value);
-			void setUniform3(const std::string& name, const float& x, const float& y, const float& z);
-			void setUniform3(const std::string& name, const float& x, const math::Vec2f& yz);
-			void setUniform3(const std::string& name, const math::Vec2f& xy, const float& z);
+			void setUniform3(const std::string& name, float x, float y, float z);
+			void setUniform3(const std::string& name, float x, const math::Vec2f& yz);
+			void setUniform3(const std::string& name, const math::Vec2f& xy, float z);
 			void setUniform3(const std::string& name, const math::Vec3f& value);
-			void setUniform4(const std::string& name, const float& x, const float& y, const float& z, const float& w);
-			void setUniform4(const std::string& name, const float& x, const math::Vec2f& yz, const float& w);
-			void setUniform4(const std::string& name, const float& x, const float& y, const math::Vec2f& zw);
-			void setUniform4(const std::string& name, const math::Vec2f& xy,const float& z, const float& w);
-			void setUniform4(const std::string& name, const float& x, const math::Vec3f& yzw);
-			void setUniform4(const std::string& name, const math::Vec3f& xyz, const float& w);
+			void setUniform4(const std::string& name, float x, float y, float z, float w);
+			void setUniform4(const std::string& name, float x, const math::Vec2f& yz, float w);
+			void setUniform4(const std::string& name, float x, float y, const math::Vec2f& zw);
+			void setUniform4(const std::string& name, const math::Vec2f& xy,float z, float w);
+			void setUniform4(const std::string& name, float x, const math::Vec3f& yzw);
+			void setUniform4(const std::string& name, const math::Vec3f& xyz, float w);
 			void setUniform4(const std::string& name, const math::Vec4f& xyzw);
 			void setUniformMat4(const std::string& name, const math::Mat4& value);
 

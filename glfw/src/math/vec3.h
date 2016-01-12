@@ -38,6 +38,9 @@ namespace inspix {
 
 			void set(const T& x, const T& y, const T& z);
 
+			
+			static T dot(const Vec3<T>& lhs, const Vec3<T>& rhs);
+			static Vec3<T> cross(Vec3<T> lhs, const Vec3<T>& rhs);
 
 			Vec3<T> operator-() const;
 			Vec3<T>& operator+=(const Vec3<T>& other);
@@ -170,17 +173,17 @@ namespace inspix {
 		}
 
 		template<typename T>
-		T dot(const Vec3<T>& lhs, const Vec3<T>& rhs) {
-			return lhs.dot(rhs)
-		}
-
-		template<typename T>
 		Vec3<T> Vec3<T>::cross(const Vec3<T>& other) {
 			return Vec3<T>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
 		}
 
 		template<typename T>
-		Vec3<T> cross(Vec3<T> lhs, const Vec3<T>& rhs) {
+		T Vec3<T>::dot(const Vec3<T>& lhs, const Vec3<T>& rhs) {
+			return lhs.dot(rhs)
+		}	
+
+		template<typename T>
+		Vec3<T> Vec3<T>::cross(Vec3<T> lhs, const Vec3<T>& rhs) {
 			return lhs.cross(rhs);
 		}
 
