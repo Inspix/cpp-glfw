@@ -24,12 +24,12 @@ namespace inspix {
 
 		Quaternion::Quaternion(const Vec3f& xyz, float scalar) {
 			this->xyz = xyz;
-			this->scalar = scalar;
+			this->w = scalar;
 		}
 
 		Quaternion::Quaternion(const Vec4f& values) {
 			this->xyz = values.xyz();
-			this->scalar = values.w;
+			this->w = values.w;
 		}
 
 		/* OPERATIONS */
@@ -60,6 +60,10 @@ namespace inspix {
 			w = _w;
 
 			return *this;
+		}
+
+		Vec3f Quaternion::mul(const Vec3f& vec) {
+			return rotateVec(*this, vec);
 		}
 
 		Quaternion& Quaternion::mul(const float& scalar) {

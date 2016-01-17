@@ -28,8 +28,10 @@
     <ClCompile Include="src\graphics\color.cpp" />
     <ClCompile Include="src\graphics\drawables\drawable2d.cpp" />
     <ClCompile Include="src\graphics\renderers\batchrenderer.cpp" />
+    <ClCompile Include="src\graphics\scene\scenenode.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\graphics\transform.cpp" />
     <ClCompile Include="src\graphics\window.cpp" />
     <ClCompile Include="src\input\input.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
@@ -45,7 +47,9 @@
     <ClInclude Include="src\graphics\drawables\drawable2d.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer.h" />
+    <ClInclude Include="src\graphics\scene\scenenode.h" />
     <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\graphics\transform.h" />
     <ClInclude Include="src\graphics\window.h" />
     <ClInclude Include="src\input\input.h" />
     <ClInclude Include="src\graphics\color.h" />

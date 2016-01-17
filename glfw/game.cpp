@@ -63,7 +63,7 @@ void Game::run(){
 		}
 	}
 
-	Drawable2D* positionTest = new Drawable2D(Vec3f(0, 0, 0), Vec2f(4, 4), Color(0x2020ffffu));
+	Drawable2D* positionTest = new Drawable2D(Vec3f(-2, -2, 0), Vec2f(4, 4), Color(0x2020ffffu));
 	std::cout << sizeof(Drawable2D) * drawables.size() << std::endl;
 	Quaternion q = Quaternion::rotation((float)(glfwGetTime() * 10), Vec3f(0.5f, 0.5f, 0.5f).normalize());
 	q.xyz += Vec3f(1.f, 1.f, 1.f);;

@@ -1,6 +1,22 @@
 #include "game.h"
 #include "graphics/color.h"
 #include "math/quaternion.h"
+#include "graphics/scene/scenenode.h"
+
+void testFunc() {
+	
+	std::unique_ptr<SceneNode> scene = std::make_unique<SceneNode>();
+
+	scene->addChild(std::make_unique<SceneNode>());
+	std::unique_ptr<SceneNode> testNode = std::make_unique<SceneNode>();
+	SceneNode& testNodeRef = *testNode;
+	scene->addChild(std::move(testNode));
+	testNodeRef.render();
+
+	scene->addChild(std::make_unique<SceneNode>());
+
+	std::unique_ptr<SceneNode> removed = scene->detachChild(testNodeRef);
+}
 
 int main(int argc,char** argv) {	
 #if 0
@@ -81,7 +97,7 @@ int main(int argc,char** argv) {
 	std::cout << "Expected : Quaternion[0, -1 , 25 ,-16] : " << q2 * q1 << std::endl;
 #endif
 
-#if 1 
+#if 0 
 
 	Quaternion q = { 1,0,1,0 };
 	Mat4 rotation = q.toMatrix4();
@@ -89,8 +105,25 @@ int main(int argc,char** argv) {
 
 	std::cout << rotation.get(3, 3) << std::endl;
 	std::cout << rotation.m33 << std::endl;
+	Vec3f a(2, 3, 3);
+	Vec3f b(3, 3, 3);
+	Vec3f c = a.cross(b);
+	std::cout << c << std::endl;
+	std::cout << "Length:" << a.magnitude() << std::endl;
+	std::cout << "Length:" << b.magnitude() << std::endl;
+	std::cout << "Length:" << c.magnitude() << std::endl;
 #endif
-	Game().run();
+
+#if 1 
+	
+
+	testFunc();
+
+	system("PAUSE");
+
+#endif
+
+	//Game().run();
 	_CrtDumpMemoryLeaks();
 	return 0;
 }

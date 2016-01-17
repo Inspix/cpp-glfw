@@ -143,19 +143,19 @@ namespace inspix {
 
 			return result;
 		}
-
+		/*
 		Mat4 Mat4::rotation(const Quaternion& q, const Vec3f& point) {
 			Mat4 res = identity();
-			double sqw = q.w*q.w;
-			double sqx = q.x*q.x;
-			double sqy = q.y*q.y;
-			double sqz = q.z*q.z;
-			res.m00 = sqx - sqy - sqz + sqw; // since sqw + sqx + sqy + sqz =1
+			float sqw = q.w*q.w;
+			float sqx = q.x*q.x;
+			float sqy = q.y*q.y;
+			float sqz = q.z*q.z;
+			res.m00 = sqx - sqy - sqz + sqw;
 			res.m11 = -sqx + sqy - sqz + sqw;
 			res.m22 = -sqx - sqy + sqz + sqw;
 
-			double tmp1 = q.x*q.y;
-			double tmp2 = q.z*q.w;
+			float tmp1 = q.x*q.y;
+			float tmp2 = q.z*q.w;
 			res.m01 = 2.0 * (tmp1 + tmp2);
 			res.m10 = 2.0 * (tmp1 - tmp2);
 
@@ -182,7 +182,7 @@ namespace inspix {
 			res.m33 = 1.0;
 			return res;
 		}
-
+		*/
 		Mat4 Mat4::rotation(float angle, const Vec3f& axis) {
 			return rotation(angle, axis.x, axis.y, axis.z);
 		}

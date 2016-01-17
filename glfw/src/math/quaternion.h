@@ -14,10 +14,7 @@ namespace inspix {
 					float z;
 					float w;
 				};
-				struct {
-					Vec3f xyz;
-					float scalar;
-				};
+				Vec3f xyz;
 			};
 
 
@@ -34,6 +31,7 @@ namespace inspix {
 			Quaternion& div(const float& scalar);
 			Quaternion& mul(const Quaternion& other);
 			Quaternion& mul(const float& scalar);
+			Vec3f mul(const Vec3f& vec);
 
 			/* Static methods */
 			static Quaternion rotation(float degrees, const Vec3f& unitVec);
@@ -67,6 +65,9 @@ namespace inspix {
 				return lhs.mul(rhs);
 			}
 
+			friend Vec3f operator*(const Quaternion& lhs, const Vec3f& rhs) {
+				return Quaternion::rotateVec(lhs, rhs);
+			}
 
 			friend std::ostream& operator << (std::ostream& os, const Quaternion& q);
 			
